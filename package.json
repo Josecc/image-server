@@ -1,0 +1,22 @@
+{
+  "name": "image-server",
+  "version": "1.0.0",
+  "description": "A server for publishing images",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Josecc/image-server.git"
+  },
+  "author": "Jose Canahui",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Josecc/image-server/issues"
+  },
+  "homepage": "https://github.com/Josecc/image-server#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
