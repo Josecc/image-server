@@ -15,6 +15,7 @@ app.use('/images/:im_name', (req, res, next) => {
       }
     });
   });
+  next();
 });
 
 app.use(express.static(images));
