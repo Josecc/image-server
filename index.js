@@ -5,17 +5,22 @@ let app = express();
 let images = __dirname;
 
 app.use('/images/:im_name', (req, res, next) => {
-  let extensions = ['.png', '.jpg'];
-  extensions.map((extension, index) => {
-    fs.exists( images + '/images/' + req.params.im_name + extension, (exists) => {
+  let extensions = ['.png', '.jpg'];                //- Add more extensions to support more files
+  let state = { found: false, checks: 0 };          //- Makes sure to return not found when all extensions
+                                                    //  checked and dile not found.
+  for(let i = 0; i < extensions.length; i++){
+    fs.exists( images + '/images/' + req.params.im_name + extensions[i], (exists) => {
+      state.checks++;
+
       if(exists) {
-        req.url += extension;
+        req.url += extensions[i];
+        state.found = true;
         next();
-      } else if (index + 1 == extensions.length && !res.headersSent) {
+      } else if( state.checks == extensions.length && !state.found) {
         next();
       }
     });
-  });
+  }
 });
 
 app.use(express.static(images));
