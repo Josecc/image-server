@@ -6,19 +6,17 @@ let images = __dirname;
 
 app.use('/images/:im_name', (req, res, next) => {
   let extensions = ['.png', '.jpg'];
-  var exists = false;
-  let sentHeaders = false;
-  extensions.forEach((extension) => {
+  extensions.map((extension, index) => {
     fs.exists( images + '/images/' + req.params.im_name + extension, (exists) => {
       if(exists) {
         req.url += extension;
         next();
-        sentHeaders = true;
+        return;
+      } else if (index + 1 == extensions.length) {
+        next();
       }
     });
   });
-  if(sentHeaders)
-    next();
 });
 
 app.use(express.static(images));
