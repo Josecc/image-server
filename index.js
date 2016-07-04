@@ -6,7 +6,6 @@ let images = __dirname;
 
 app.use('/images/:im_name', (req, res, next) => {
   let extensions = ['.png', '.jpg'];
-  console.log("hello");
   extensions.forEach((extension) => {
     fs.exists( images + '/images/' + req.params.im_name + extension, (exists) => {
       if(exists) {
