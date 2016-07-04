@@ -11,7 +11,7 @@ app.use('/images/:im_name', (req, res, next) => {
       if(exists) {
         req.url += extension;
         next();
-      } else if (index + 1 == extensions.length && !res.headerSent) {
+      } else if (index + 1 == extensions.length && !res.headersSent) {
         next();
       }
     });
